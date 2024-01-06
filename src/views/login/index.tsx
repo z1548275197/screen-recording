@@ -23,14 +23,17 @@ export default defineComponent({
 
     const submit = () => {
       state.btnLoading = true;
-      ruleFormRef.value.validate( async (valid: any) => {
+      ruleFormRef.value.validate(async (valid: any) => {
         if (valid) {
           const res: any = await login(state.loginForm)
-          if (res.code === 1) {
-            localStorage.setItem('authInfo', JSON.stringify(res.data))
-            localStorage.setItem('token', JSON.stringify(res.data.authKey))
-            router.push('/');
-          }
+          router.push('/');
+          localStorage.setItem('authInfo', '{}')
+          localStorage.setItem('token', 'asfasfsag')
+          // if (res.code === 1) {
+          //   localStorage.setItem('authInfo', JSON.stringify(res.data))
+          //   localStorage.setItem('token', JSON.stringify(res.data.authKey))
+          //   router.push('/');
+          // }
           console.log(res);
         } else {
           console.log('出错了')
@@ -53,7 +56,7 @@ export default defineComponent({
               <h1 >
                 欢迎登录小熊客景管理系统
               </h1>
-              <el-form 
+              <el-form
                 model={state.loginForm}
                 ref={ruleFormRef}
                 rules={rules}
@@ -75,16 +78,16 @@ export default defineComponent({
                   </el-input>
                 </el-form-item>
               </el-form>
-              <el-button  
+              <el-button
                 onClick={() => {
                   submit();
-                }} 
+                }}
                 type="primary"
                 loading={state.btnLoading}
               >登录</el-button>
             </div>
           </div>
-          
+
         </div>
       )
     }
