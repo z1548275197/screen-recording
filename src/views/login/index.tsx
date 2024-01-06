@@ -25,7 +25,6 @@ export default defineComponent({
       state.btnLoading = true;
       ruleFormRef.value.validate(async (valid: any) => {
         if (valid) {
-          const res: any = await login(state.loginForm)
           router.push('/');
           localStorage.setItem('authInfo', '{}')
           localStorage.setItem('token', 'asfasfsag')
@@ -34,7 +33,6 @@ export default defineComponent({
           //   localStorage.setItem('token', JSON.stringify(res.data.authKey))
           //   router.push('/');
           // }
-          console.log(res);
         } else {
           console.log('出错了')
         }
